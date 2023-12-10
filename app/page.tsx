@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth";
 import { Toaster } from "sonner";
 
 export default async function ChatPage() {
-  const session = await getServerSession(authOptions);
+/*   const session = await getServerSession(authOptions); */
 
   const files = await prisma.file.findMany({
     orderBy: { id: 'desc' },
