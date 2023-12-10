@@ -25,6 +25,7 @@ export default function Upload({session}: {session: Session | null}) {
     <div className='flex flex-col gap-4 items-center'>
         <div className="flex gap-2">
         <Input
+        accept='application/pdf'
           type="file"
           onChange={(e) => {
             setFile(e.target.files?.[0]);

@@ -21,7 +21,7 @@ return (
                     placeholder='blur'
                     className='w-12 h-12 rounded'
                 />
-                <h1 className="text-2xl">Beta</h1>
+                <h1 className="font-medium text-2xl">BETA</h1>
             </Link>
             <li className='flex gap-3 items-center'>
                 <ModeToggle/>

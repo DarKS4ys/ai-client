@@ -26,8 +26,8 @@ export default async function ChatPage() {
     <div className="max-w-6xl mx-auto flex flex-col gap-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <AdminCard
-            title="Upload a new file"
-            description="Transfer a new file to edgestore using the input below."
+            title="Upload a new PDF"
+            description="Transfer a new PDF to database using the input below."
           >
           <Upload session={session}/>
         </AdminCard>
