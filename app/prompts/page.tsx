@@ -3,9 +3,13 @@ import React from 'react'
 import CreatePromptCard from './../../components/CreatePromptCard';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import CreatePromptModal from '@/components/CreatePromptModal';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Prompt Editor - Savills AI',
+    description: 'Savills AI App - Prompt Creation',
+}
 
 export default function page() {
   return (
