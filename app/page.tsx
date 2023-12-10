@@ -34,7 +34,7 @@ export default async function ChatPage() {
 
         <AdminCard
           title="Edit AI Prompts"
-          description="Add, edit or delete the AI prompts that will be used to get data."
+          description="Add, edit or delete AI prompts that will be used to generate AI responses."
           href="/prompts"
           gradient2
           />
