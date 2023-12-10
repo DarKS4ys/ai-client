@@ -2,6 +2,7 @@ import AdminCard from "@/components/AdminCard";
 import Chat from "@/components/Chat";
 import { FileCard } from "@/components/FileCard/FileCard";
 import Upload from "@/components/Upload";
+import { redirect } from 'next/navigation';
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/db/prisma";
 import { getServerSession } from "next-auth";
@@ -10,14 +11,18 @@ import { Toaster } from "sonner";
 export default async function ChatPage() {
  const session = await getServerSession(authOptions);
 
-/*   const files = await prisma.file.findMany({
-    orderBy: { id: 'desc' },
-    include: { user: true },
-  }); */
-
   if (session?.user.status != 'Admin') {
     throw new Error('You need to be an admin')
   }
+
+  if (session?.user.status != 'Admin') {
+    redirect('/sign-in?callbackUrl=/create-place');
+  }
+  
+/*   const files = await prisma.file.findMany({
+    orderBy: { id: 'desc' },
+    include: { user: true },
+  });  */
 
   return (
     <div className='py-10 px-4 md:p-12'>
