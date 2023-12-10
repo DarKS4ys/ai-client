@@ -15,15 +15,13 @@ export default async function ChatPage() {
     include: { user: true },
   });
 
-/* 
   if (session?.user.status != 'Admin') {
     throw new Error('You need to be an admin')
   }
- */
 
   return (
     <div className='py-10 px-4 md:p-12'>
-      <div className="max-w-6xl mx-auto flex flex-col gap-4">
+{/*       <div className="max-w-6xl mx-auto flex flex-col gap-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <AdminCard
             title="Upload a new file"
@@ -49,7 +47,7 @@ export default async function ChatPage() {
           ))}
         </div>
         <Toaster closeButton/>
-      </div>
+      </div> */}
     </div>
   );
 }
