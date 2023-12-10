@@ -15,10 +15,9 @@ export default async function ChatPage() {
     include: { user: true },
   }); */
 
-  /*
   if (session?.user.status != 'Admin') {
     throw new Error('You need to be an admin')
-  } */
+  }
 
   return (
     <div className='py-10 px-4 md:p-12'>
