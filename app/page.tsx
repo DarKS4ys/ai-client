@@ -11,9 +11,9 @@ import { Toaster } from "sonner";
 export default async function ChatPage() {
  const session = await getServerSession(authOptions);
 
-  if (session?.user.status != 'Admin') {
+/*   if (session?.user.status != 'Admin') {
     throw new Error('You need to be an admin')
-  }
+  } */
 
   if (session?.user.status != 'Admin') {
     redirect('/sign-in?callbackUrl=/');
