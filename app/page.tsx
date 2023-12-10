@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth";
 import { Toaster } from "sonner";
 
 export default async function ChatPage() {
-  const session = await getServerSession(authOptions);
+/*   const session = await getServerSession(authOptions);
 
   const files = await prisma.file.findMany({
     orderBy: { id: 'desc' },
@@ -17,7 +17,7 @@ export default async function ChatPage() {
 
   if (session?.user.status != 'Admin') {
     throw new Error('You need to be an admin')
-  }
+  } */
 
   return (
     <div className='py-10 px-4 md:p-12'>
