@@ -16,7 +16,7 @@ export default async function ChatPage() {
   }
 
   if (session?.user.status != 'Admin') {
-    redirect('/sign-in?callbackUrl=/create-place');
+    redirect('/sign-in?callbackUrl=/');
   }
   
 /*   const files = await prisma.file.findMany({
