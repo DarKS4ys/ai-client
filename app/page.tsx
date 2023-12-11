@@ -4,7 +4,6 @@ import { FileCard } from "@/components/FileCard/FileCard";
 import Upload from "@/components/Upload";
 import { redirect } from 'next/navigation';
 import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/db/prisma";
 import { getServerSession } from "next-auth";
 import { Toaster } from "sonner";
 import Files from "@/components/Files";

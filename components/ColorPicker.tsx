@@ -20,12 +20,12 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange }) => {
     <div>
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                    Pick a color
-                </Button>
+              <Button variant="outline">
+                Pick a color
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                    <GithubPicker color={selectedColor} onChange={handleColorChange} />
+                <GithubPicker color={selectedColor} onChange={handleColorChange} />
             </DropdownMenuContent>
         </DropdownMenu>
     </div>

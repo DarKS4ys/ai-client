@@ -3,7 +3,7 @@ import { Session, User } from 'next-auth';
 import React from 'react';
 import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../ui/dialog';
 import { IoMdClose } from 'react-icons/io';
-import Delete from './Delete';
+import Delete from './FileDelete';
 import { Button } from '../ui/button';
 import { AiFillEye } from 'react-icons/ai';
 import Image from 'next/image';
@@ -28,7 +28,7 @@ export const FileCard: React.FC<FileCardProps> = ({ session, file }) => (
           </DialogTrigger>
           <DialogContent className="w-80 flex flex-col items-center justify-center gap-4 py-6">
             <h1 className="text-xl font-semibold text-center">
-              Are you sure you wanna delete this file?
+              Are you sure you want to delete this file?
             </h1>
             <div className="flex items-center gap-3">
               <Delete

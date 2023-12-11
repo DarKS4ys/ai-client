@@ -55,6 +55,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   File          File[]
+  Prompt        Prompt[]
 
   @@map("users")
 }
@@ -77,4 +78,15 @@ model File {
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("files")
+}
+
+model Prompt {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  name   String
+  prompt String
+  color  String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("prompts")
 }

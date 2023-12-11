@@ -7,4 +7,8 @@ declare module "next-auth" {
             status: string;
         } & DefaultSession["user"]
     }
+
+    interface User {
+        status: string;
+    }
 }
