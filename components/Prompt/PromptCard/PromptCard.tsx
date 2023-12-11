@@ -12,6 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import EditPrompt from './EditPrompt';
+import DeletePrompt from './DeletePrompt';
 
 interface PromptCardProps {
   title: string;
@@ -38,27 +40,7 @@ export default function PromptCard({
             </button>
           </DialogTrigger>
           <DialogContent className="w-[85%] sm:w-[30rem] flex flex-col justify-center gap-3">
-            
-            <h1 className="text-xl font-semibold mb-2">
-              Edit Prompt
-            </h1>
-
-            <div className='flex flex-col gap-1'>
-              <h3>New Name</h3>
-              <Input required maxLength={500} name="name" placeholder={title} type="text" />
-            </div>
-
-            <div className='flex flex-col gap-1'>
-            <h3>New Prompt</h3>
-            <Textarea required maxLength={5000} name="prompt" placeholder={prompt} />
-            </div>
-
-            <div className="flex justify-end items-center gap-3">
-              <DialogClose>
-                <Button>Cancel</Button>
-              </DialogClose>
-            </div>
-
+            <EditPrompt title={title} prompt={prompt}/>
           </DialogContent>
         </Dialog>
 
@@ -69,15 +51,7 @@ export default function PromptCard({
             </button>
           </DialogTrigger>
           <DialogContent className="w-[80%] sm:w-80 flex flex-col items-center justify-center gap-3">
-            <h1 className="text-xl font-semibold text-center">
-              Are you sure you want to delete this prompt?
-            </h1>
-            <div className="flex items-center gap-3">
-              <PromptDelete user={user} promptId={id} />
-              <DialogClose>
-                <Button>Cancel</Button>
-              </DialogClose>
-            </div>
+            <DeletePrompt user={user} id={id}/>
           </DialogContent>
         </Dialog>
       </div>
