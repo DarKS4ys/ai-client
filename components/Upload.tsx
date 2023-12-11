@@ -33,7 +33,7 @@ export default function Upload({session}: {session: Session | null}) {
         />
          <Button
           disabled={!isAdmin || loading || !file}
-          className={clsx((!isAdmin || loading) && 'bg-primary/40 animate-pulse')}
+          className={clsx((!isAdmin || loading) && 'bg-primary/40 flex gap-2 animate-pulse')}
           onClick={async () => {
             if (isAdmin && file) {
               setLoading(true);

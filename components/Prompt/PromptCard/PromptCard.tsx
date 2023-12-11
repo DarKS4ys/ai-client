@@ -12,8 +12,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import EditPrompt from './EditPrompt';
-import DeletePrompt from './DeletePrompt';
+import EditPrompt from '../EditPrompt';
+import DeletePrompt from '../DeletePrompt';
 
 interface PromptCardProps {
   title: string;
