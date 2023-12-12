@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { GithubPicker, ColorResult, SwatchesPicker, CirclePicker } from 'react-color';
+import { ColorResult, CirclePicker } from 'react-color';
 import { Button } from './ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from './ui/dropdown-menu';
 
