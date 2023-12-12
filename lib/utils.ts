@@ -11,6 +11,16 @@ export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+export const initialMessages: Message[] = [
+  {
+    role: "assistant",
+    id: "0",
+    content:
+      "Hi! I am your PDF assistant. I am happy to help with your questions about your PDF 😊",
+  },
+];
+
+
 export function scrollToBottom(containerRef: React.RefObject<HTMLElement>) {
   if (containerRef.current) {
     const lastMessage = containerRef.current.lastElementChild;
@@ -42,18 +52,6 @@ export function formattedText(inputText: string) {
 }
 
 // Default UI Message
-export const initialMessages: Message[] = [
-  {
-    role: "assistant",
-    id: "0",
-    content:
-      "Hi! I am your PDF assistant. I am happy to help with your questions about your PDF",
-  },
-];
-
-interface Data {
-  sources: string[];
-}
 
 // Maps the sources with the right ai-message
 export const getSources = (data: any, role: string, index: number) => {

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { GithubPicker, ColorResult } from 'react-color';
+import { GithubPicker, ColorResult, SwatchesPicker, CirclePicker } from 'react-color';
 import { Button } from './ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from './ui/dropdown-menu';
 
@@ -24,8 +24,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange }) => {
                 Pick a color
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <GithubPicker color={selectedColor} onChange={handleColorChange} />
+            <DropdownMenuContent className="p-4">
+              <CirclePicker color={selectedColor} onChange={handleColorChange} />
             </DropdownMenuContent>
         </DropdownMenu>
     </div>

@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
 
-  const question = prompt /* messages[messages.length - 1].content; */
+  const question = /* prompt */  messages[messages.length - 1].content; //! Uses the actual message right now, you can switch by uncommenting
 
   console.log(question)
 

@@ -3,29 +3,30 @@
 import React, { useEffect, useRef } from 'react';
 import { Input } from './ui/input';
 import { useChat } from 'ai/react';
-import { getSources, initialMessages, scrollToBottom } from '@/lib/utils';
+import {
+  getSources,
+  initialMessages,
+  scrollToBottom,
+  truncateText,
+} from '@/lib/utils';
 import { ChatLine } from './ChatLine';
 import { Button } from './ui/button';
 import { FaSpinner } from 'react-icons/fa';
+import { Prompt } from '@prisma/client';
+import PromptComponent from './Prompt';
+import clsx from 'clsx';
 
-export default function Chat() {
+export default function Chat({ prompts }: { prompts: Prompt[] }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const {
-    messages,
-    input,
-    handleInputChange,
-    handleSubmit,
-    isLoading,
-    data,
-    append,
-  } = useChat({
-    initialMessages,
-    body: {
-      prompt: 'Display the titles of the PDFs you have on a list and add a PDF_LIST at the start of the output.',
-    },
-  });
+  const { messages, input, isLoading, data, append, handleSubmit, setInput } =
+    useChat({
+      initialMessages,
+      /*     body: {
+      prompt: prompts[1].prompt,
+    }, */
+    });
 
   useEffect(() => {
     setTimeout(() => scrollToBottom(containerRef), 100);
@@ -53,6 +54,7 @@ export default function Chat() {
   }, []);
 
   console.log(input);
+  console.log(prompts);
 
   return (
     <div className="rounded-2xl border h-[75vh] flex flex-col justify-between">
@@ -68,39 +70,33 @@ export default function Chat() {
             />
           ))}
       </div>
-      <div className="p-4 flex gap-2 w-ful">
-        <Button
-          className="w-full"
-          disabled={isLoading}
-          onClick={() => {
-            append({
-              role: 'user',
-              content: 'List me the PDF files',
-            });
-          }}
-        >
-          Get PDF List
-        </Button>
-      </div>
-
-{/*       <form
-        onSubmit={handleSubmit}
-        className="p-4 flex gap-2 clear-both items-end"
-      >
-        <textarea
-          ref={textareaRef}
-          className="flex border boder-border p-[10px] text-sm items-center justify-center rounded-md w-full outline-none resize-none max-h-[300px] bg-transparent scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-neutral-600"
-          value={input}
-          disabled={isLoading}
-          onChange={handleInputChange}
-          placeholder={'You are not allowed to send messages.'}
-          rows={1}
-        />
-
-        <Button type="submit" className="w-24" disabled={isLoading}>
-          {isLoading ? <FaSpinner className="animate-spin" /> : 'Ask'}
-        </Button>
-      </form> */}
+      <form onSubmit={handleSubmit} className="p-4 flex gap-2 mt-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 p-4 gap-2 mt-auto">
+          {prompts.map((prompt) => (
+            <button
+              key={prompt.id}
+              type="submit"
+              onClick={() => {
+                setInput(prompt.prompt);
+                /* append({
+                  role: 'user',
+                  content: prompt.prompt,
+                }); */
+              }}
+              className={clsx(
+                'hover:bg-border text-start border border-border p-4 rounded-lg transition duration-200 flex flex-col gap-2 items-start',
+                isLoading && 'bg-primary/40 hover:bg-primary/40'
+              )}
+              style={{ 
+                backgroundColor: `rgba(${parseInt(prompt.color.slice(-6, -4), 16)}, ${parseInt(prompt.color.slice(-4, -2), 16)}, ${parseInt(prompt.color.slice(-2), 16)}, 0.5)`, 
+              }}
+            >
+              <h1>{prompt.name}</h1>
+              <h1>{truncateText(prompt.prompt, 40)}</h1>
+            </button>
+          ))}
+        </div>
+      </form>
     </div>
   );
 }
