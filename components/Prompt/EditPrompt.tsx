@@ -71,11 +71,15 @@ export default function EditPrompt({user, title, prompt, color, id}: {id: string
         <ColorPicker predefinedColor={color} onColorChange={handleColorChange} />
       </div>
 
-      <div className="flex justify-end items-center gap-3">
-        <CreatePromptButton extraDisabled={noFilledInput} edit/>
-        <DialogClose>
-          <Button className="bg-red-600 hover:bg-red-700 text-white">Cancel</Button>
-        </DialogClose>
+      <div className='flex gap-2 items-center justify-between w-full'>
+        <p className='text-muted-foreground font-light text-sm'>Empty fields will preserve the current value</p>
+
+        <div className="flex justify-end items-center gap-3">
+          <CreatePromptButton extraDisabled={noFilledInput} edit/>
+          <DialogClose>
+            <Button className="bg-red-600 hover:bg-red-700 text-white">Cancel</Button>
+          </DialogClose>
+        </div>
       </div>
     </form>
   );
