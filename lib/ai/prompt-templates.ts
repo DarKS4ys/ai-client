@@ -11,7 +11,7 @@ Standalone question:`;
 export const QA_TEMPLATE = `when told to begin the summary
 summarise this document into 500 words and have multiple paragraphs
 
-{context}
+Document: {context}
 
 Question: {question}
 Helpful answer in markdown:`;
