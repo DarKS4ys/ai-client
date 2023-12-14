@@ -17,6 +17,8 @@ export default function Upload({session}: {session: Session | null}) {
   const [progress, setProgress] = React.useState<number>()
   const [loading, setLoading] = React.useState<boolean>(false)
 
+  const [embedding, setEmbedding] = React.useState<boolean>(false);
+
   const { edgestore } = useEdgeStore();
 
   const isAdmin = session?.user?.status === 'Admin';
@@ -50,26 +52,36 @@ export default function Upload({session}: {session: Session | null}) {
 
                 toast.success(result.message);
 
+                toast.loading('Optimizing PDF for Savills AI integration...');
+
+                setEmbedding(true)
                 const response = await fetch('/api/prepare-document', {
                   method: 'POST',
                   body: JSON.stringify({ url: res.url }),
                 });
+              
+
                 if (response.ok) {
                   const data = await response.text();
                   console.log('API DATA: ' + data);
+
                 } else {
                   console.error('Failed to fetch data');
+
+                  toast.error("Something went wrong while preparing the document. Please try again later.");
                 }
 
-                console.log('Document preparation successful!');
               } catch (error) {
                 if (typeof error === 'string') {
                   toast.error(error);
                 }
               } finally {
                 setLoading(false);
+                setEmbedding(false)
+                toast.dismiss()
               }
               console.log('Client Data: ' + res.url);
+              toast.success('PDF succesfully processed by Savills AI!')
             }
           }}
         >
