@@ -27,10 +27,10 @@ export default async function page() {
         <div className="max-w-6xl mx-auto flex flex-col gap-4">
             <div className='flex flex-col gap-1'>
                 <div className='flex justify-between items-center'>
-                    <h1 className="text-3xl font-semibold">AI Prompt Editor - WORK IN PROGRESS</h1>
+                    <h1 className="text-3xl font-semibold">AI Prompt Editor</h1>
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button>Create Prompt</Button>
+                            <Button>Create</Button>
                         </DialogTrigger>
                         <DialogContent className="w-[85%] sm:w-96">
                             <CreatePromptModal user={session?.user}/>
