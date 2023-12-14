@@ -7,6 +7,6 @@ import clsx from 'clsx'
 
 export default function LogOutButton({callback, className}: {callback: string, className?: string}) {
   return (
-    <Button className={clsx('w-full', className)} onClick={() => signOut({callbackUrl: callback})}>Sign Out</Button>
+    <Button className={clsx('w-full rounded-sm', className)} onClick={() => signOut({callbackUrl: callback})}>Sign Out</Button>
   )
 }

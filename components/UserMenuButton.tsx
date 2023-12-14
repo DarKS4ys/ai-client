@@ -48,7 +48,7 @@ export default function UserMenuButton({session}: UserMenuButtonProps) {
 
                     {user.status == 'Admin' &&
                         <Link href='/prompts'>
-                            <DropdownMenuItem className="gap-3 flex text-lg items-center opacity-90 hover:opacity-100 transition">
+                            <DropdownMenuItem className="cursor-pointer gap-3 flex text-lg items-center opacity-90 hover:opacity-100 transition">
                             <BsGear />
                                 <h1>Edit Prompts</h1>
                             </DropdownMenuItem>
