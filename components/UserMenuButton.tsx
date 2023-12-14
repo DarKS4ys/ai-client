@@ -6,9 +6,11 @@ import profilePicPlaceholder from '@/public/profile-pic-placeholder.png'
 import { signIn, signOut } from "next-auth/react"
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Button } from "./ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { truncateText } from "@/lib/utils"
 import LogOutButton from "./LogOutButton"
+import Link from "next/link"
+import { BsGear } from "react-icons/bs"
 
 interface UserMenuButtonProps {
     session: Session | null
@@ -44,7 +46,17 @@ export default function UserMenuButton({session}: UserMenuButtonProps) {
 
                     <DropdownMenuSeparator/>
 
-                    {/* <Button className="w-full mt-1" onClick={() => signOut({callbackUrl: "/"})}>Sign Out</Button> */}
+                    {user.status == 'Admin' &&
+                        <Link href='/prompts'>
+                            <DropdownMenuItem className="gap-3 flex text-lg items-center opacity-90 hover:opacity-100 transition">
+                            <BsGear />
+                                <h1>Edit Prompts</h1>
+                            </DropdownMenuItem>
+                        </Link>
+                    }
+
+                        <DropdownMenuSeparator/>
+
                     <LogOutButton className="mt-1" callback="/sign-in"/>
                      
                     </DropdownMenuContent>
