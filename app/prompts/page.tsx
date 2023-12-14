@@ -41,7 +41,7 @@ export default async function page() {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {prompts.map((prompt) => (
-                    <PromptCard key={prompt.id} user={session?.user} color={prompt.color} id={prompt.id} title={prompt.name} prompt={truncateText(prompt.prompt, 100)}/>
+                    <PromptCard key={prompt.id} user={session?.user} color={prompt.color} id={prompt.id} title={prompt.name} prompt={truncateText(prompt.prompt, 5000)}/>
                 ))}
                 <CreatePromptCard user={session?.user}/>
             </div>

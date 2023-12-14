@@ -17,15 +17,16 @@ export default function CreatePromptModal({ user }: {user: User | undefined}) {
       <form
         className="flex flex-col gap-2"
         action={async (formData) => {
-          if (user?.id) {
+          if (user?.id && user.status == 'Admin') {
             const { error, data } = await createPrompt(formData, user?.id, selectedColor);       
             toast.success(`Succesfully created prompt ${data?.name}`);
 
-            console.log(data)
             if (error) {
               toast.error(error);
               return;
             }
+          } else {
+            toast.error("You are not authorised to take this action")
           }
         }}
       >

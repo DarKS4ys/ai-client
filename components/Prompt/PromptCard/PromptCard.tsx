@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import EditPrompt from '../EditPrompt';
 import DeletePrompt from '../DeletePrompt';
+import { truncateText } from '@/lib/utils';
 
 interface PromptCardProps {
   title: string;
@@ -35,18 +36,18 @@ export default function PromptCard({
       <div className="sm:opacity-0 sm:group-hover:opacity-100 gap-2 flex absolute top-3 right-3 z-20 transition duration-300">
         <Dialog>
           <DialogTrigger asChild>
-            <button className="hover:scale-110 active:scale-95 bg-primary/20 hover:bg-primary dark:text-white dark:hover:text-accent text-accent p-3 rounded-full transition duration-200">
+            <button className="hover:scale-110 active:scale-95 dark:bg-primary/20 bg-primary/80 dark:hover:bg-primary hover:bg-primary dark:text-white dark:hover:text-accent text-accent p-3 rounded-full transition duration-200">
               <BiPencil />
             </button>
           </DialogTrigger>
           <DialogContent className="w-[85%] sm:w-[30rem] flex flex-col justify-center gap-3">
-            <EditPrompt title={title} prompt={prompt}/>
+            <EditPrompt id={id} color={color} user={user} title={title} prompt={prompt}/>
           </DialogContent>
         </Dialog>
 
         <Dialog>
           <DialogTrigger asChild>
-            <button className="hover:scale-110 active:scale-95 bg-primary/20 hover:bg-red-500 dark:text-white  text-accent p-3 rounded-full transition duration-200">
+            <button className="hover:scale-110 active:scale-95 dark:bg-primary/20 dark:hover:bg-red-500 bg-primary/80 hover:bg-red-500 dark:text-white  text-accent p-3 rounded-full transition duration-200">
               <BsTrash />
             </button>
           </DialogTrigger>
@@ -56,7 +57,7 @@ export default function PromptCard({
         </Dialog>
       </div>
       <h1 className="text-2xl font-semibold">{title}</h1>
-      <p className="text-light text-muted-foreground font-sm">{prompt}</p>
+      <p className="text-light text-muted-foreground font-sm">{truncateText(prompt, 100)}</p>
       <div className="w-64 absolute justify-center bottom-0 h-10 bg-primary rounded-full opacity-0 group-hover:opacity-100 mt-4 dark:blur-[110px] blur-[100px] transition duration-500" />
     </div>
   );

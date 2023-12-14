@@ -12,6 +12,7 @@ import { BiDownload, BiVideo } from 'react-icons/bi';
 import { FaFilePdf } from 'react-icons/fa';
 import Link from 'next/link';
 import ProfileImg from '@/public/profile-pic-placeholder.png';
+import { truncateText } from '@/lib/utils';
 
 interface FileCardProps {
   session: Session | null;
@@ -73,7 +74,7 @@ export const FileCard: React.FC<FileCardProps> = ({ session, file }) => (
       )}
     </div>
     <div className="flex gap-2 items-center font-medium">
-      <div className="relative overflow-hidden w-10 h-10 aspect-square rounded-full">
+      <div className="relative overflow-hidden min-w-[2.5rem] w-10 h-10 aspect-square rounded-full">
         <Image
           fill
           className="object-cover"
@@ -81,7 +82,7 @@ export const FileCard: React.FC<FileCardProps> = ({ session, file }) => (
           src={file.user.image || ProfileImg}
         />
       </div>
-      <h1>{file.user.name}</h1>
+      <h1>{truncateText(file.user.name,18)}</h1>
       <Link className="ml-auto" href={file.downloadUrl}>
         <Button className="gap-2">
           <BiDownload />

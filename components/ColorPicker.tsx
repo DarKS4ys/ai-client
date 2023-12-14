@@ -6,10 +6,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from './ui/dro
 
 interface ColorPickerProps {
   onColorChange: (color: string) => void;
+  predefinedColor?: string
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange }) => {
-  const [selectedColor, setSelectedColor] = useState<string>('#ffffff'); // Default color
+const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange, predefinedColor }) => {
+  const [selectedColor, setSelectedColor] = useState<string>(predefinedColor || '#ffffff');
 
   const handleColorChange = (color: ColorResult) => {
     setSelectedColor(color.hex);
@@ -20,8 +21,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ onColorChange }) => {
     <div>
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                Pick a color
+              <Button variant="outline" className="gap-2">
+                <h1>Pick a color</h1>
+                <div style={{ backgroundColor: selectedColor }} className='w-4 h-4 rounded-full' />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="p-4">

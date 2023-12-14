@@ -119,4 +119,65 @@ export const createPrompt = async (formData: FormData, userId: string, color: st
     data,
   };
 };
-  
+
+export const editPrompt = async (formData: FormData, userId: string, newColor: string, id: string) => {
+  const prompt = formData.get('prompt');
+  const name = formData.get('name');
+
+  const updateData: Record<string, any> = {};
+
+  if (prompt) {
+    if (!validateString(prompt as string, 5000)) {
+      return {
+        error: 'Invalid prompt',
+      };
+    }
+    updateData.prompt = prompt as string;
+  }
+
+  if (name) {
+    if (!validateString(name as string, 500)) {
+      return {
+        error: 'Invalid name',
+      };
+    }
+    updateData.name = name as string;
+  }
+
+  if (newColor) {
+    updateData.color = newColor;
+  }
+
+  if (Object.keys(updateData).length === 0) {
+    return {
+      error: 'No valid data to update',
+    };
+  }
+
+  const userSession = await session;
+
+  if (!userId || userSession?.user?.status !== 'Admin') {
+    throw new Error("You don't have permission to perform this action");
+  }
+
+  let data;
+  try {
+    data = await prisma.prompt.update({
+      where: {
+        id: id,
+      },
+      data: updateData,
+    });
+
+    revalidatePath('/prompts')
+  } catch (error: unknown) {
+    console.log(error)
+    return {
+      error: extractErrorMessage(error),
+    };
+  }
+
+  return {
+    data,
+  };
+}
