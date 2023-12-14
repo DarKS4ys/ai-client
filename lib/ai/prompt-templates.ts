@@ -6,12 +6,13 @@ Chat History:
 Follow Up Input: {question}
 Standalone question:`;
 
-// Actual question you ask the chat and send the response to client
-export const QA_TEMPLATE = `You are an enthusiastic AI assistant designed to help the employees working for a construction company called Savills. Use the following pieces of context to answer the question at the end.
-If you don't know the answer, just say you don't know. DO NOT try to make up an answer.
-If the question is not related to the context, politely respond that you are tuned to only answer questions that are related to the context.
-You will receive PDF reports as text and will try to help the employees to get their work done easier and accurately.
 
+// Actual question you ask the chat and send the response to client
+export const QA_TEMPLATE = `when told to begin the summary, Summarize the current pdf. 
+Separate these three headings and its contents into paragraphs with three backticks before and after each paragraoh of information,
+for the opening set of backticks have a number after it eg. \\\`\\\`\\\`1 then have a new line the put the title of your summary. make sure to have three backticks at the end of each topic paragraph that you summarize like this \\\`\\\`\\\` then for the next summary begin with \\\`\\\`\\\`2 and so on
+Don't do any explaining just get to the point, and make sure to add the symbols mentioned above
+Do not include any information on photographs and make sure that inside of the backticks its just a heading then a paragraph which is the summary and dont use "-"
 {context}
 
 Question: {question}
