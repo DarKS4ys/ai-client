@@ -13,6 +13,7 @@ import { FaFilePdf } from 'react-icons/fa';
 import Link from 'next/link';
 import ProfileImg from '@/public/profile-pic-placeholder.png';
 import { truncateText } from '@/lib/utils';
+import { FiExternalLink } from 'react-icons/fi';
 
 interface FileCardProps {
   session: Session | null;
@@ -24,7 +25,7 @@ export const FileCard: React.FC<FileCardProps> = ({ session, file }) => (
     <div className="relative group w-full h-80 aspect-square rounded-lg">
       {session?.user.status == 'Admin' && (
         <Dialog>
-          <DialogTrigger className="absolute -right-4 -top-4 z-40 p-2 bg-red-500 hover:bg-red-600 hover:scale-110 active:scale-95 rounded-xl opacity-0 group-hover:opacity-100 transition duration-200">
+          <DialogTrigger className="absolute -right-4 -top-4 z-40 p-2 bg-red-500 dark:hover:bg-red-600 hover:bg-red-400 hover:scale-110 active:scale-95 rounded-xl opacity-0 group-hover:opacity-100 transition duration-200">
             <IoMdClose size={20} />
           </DialogTrigger>
           <DialogContent className="w-80 flex flex-col items-center justify-center gap-4 py-6">
@@ -45,6 +46,9 @@ export const FileCard: React.FC<FileCardProps> = ({ session, file }) => (
           </DialogContent>
         </Dialog>
       )}
+      <Link href={file.fileUrl} target='_blank' rel="noopener noreferrer" className="absolute -right-4 top-8 z-40 p-2 bg-green-600 hover:bg-green-400 dark:hover:bg-green-700 hover:scale-110 active:scale-95 rounded-xl opacity-0 group-hover:opacity-100 transition duration-200">
+        <FiExternalLink size={20}/>
+      </Link>
       <div className="z-20 absolute flex gap-2 top-0 left-0 rounded-lg bg-black/40 dark:bg-black/60 group-hover:backdrop-blur w-full h-full items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
         <Dialog>
           <DialogTrigger asChild>
